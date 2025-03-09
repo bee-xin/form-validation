@@ -1,6 +1,5 @@
 import { Button, Form, Input } from "antd";
 import axios from "axios";
-import React from "react";
 import { API_BASE_URL } from "../../apiconfig";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -34,53 +33,68 @@ function Register() {
     console.log("Validation Failed", errorInfo);
   };
   return (
-    <div className="border border-amber-300 w-[300px] h-auto p-4">
-      <Form
-        className="px-2 "
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "please input your email!",
-            },
-          ]}
-        >
-          <Input type="email" className="w-[200px] m-4 p-3" />
-        </Form.Item>
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "please input your username!",
-            },
-          ]}
-        >
-          <Input className="w-[200px] m-4 p-3" type="text" />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "please input your password",
-            },
-          ]}
-        >
-          <Input.Password type="password"></Input.Password>
-        </Form.Item>
+    <div className="flex items-center justify-center h-auto p-4">
+      <div className="flex flex-row shadow-lg gap-4 p-4 rounded-[4px]">
+        <div>
+          <img
+            src="pic.jpg"
+            alt=""
+            className="w-[500px] h-[400px] rounded-[4px]"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="text-center w-full h-auto mt-5 mb-5 font-bold text-2xl p-2">
+            Create your account
+          </div>
+          <Form
+            layout="vertical"
+            className="w-80"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "please input your email!",
+                },
+              ]}
+            >
+              <Input type="email" className="w-[200px] m-4 p-3" />
+            </Form.Item>
+            <Form.Item
+              label="Username"
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: "please input your username!",
+                },
+              ]}
+            >
+              <Input className="w-[200px] m-4 p-3" type="text" />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "please input your password",
+                },
+              ]}
+            >
+              <Input.Password type="password"></Input.Password>
+            </Form.Item>
 
-        <Button type="primary" htmlType="submit">
-          Register
-        </Button>
-      </Form>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
+          </Form>
+        </div>
+      </div>
     </div>
   );
 }

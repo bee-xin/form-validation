@@ -35,7 +35,7 @@ function Login() {
     console.log("Validation Failed", errorInfo);
   };
   return (
-    <div className="border border-amber-300 w-[300px] h-auto p-4">
+    <div className=" w-full h-auto p-4">
       <Form
         className="px-2 "
         onFinish={onFinish}
