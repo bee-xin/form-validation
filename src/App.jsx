@@ -4,19 +4,21 @@ import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
-import Register from "./Protected/Register";
-import Login from "./Protected/Login";
-import ProtectedRoute from "./Protected/ProtectedRoute";
+import Register from "./Auth/Register";
+import Login from "./Auth/Login";
+import ProtectedRoute from "./Auth/Protected/ProtectedRoute";
+import Layout from "./Components/Layout";
 
 function App() {
   return (
-    <div>
-      <Navbar />
+    <div style={{}}>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

@@ -3,19 +3,36 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div>
-      <ul className="flex justify-center gap-2">
+    <nav className="bg-gray-800 p-4 shadow-lg">
+      <ul className="flex justify-center gap-6">
         <li>
-          <NavLink to="/home">Home</NavLink>
+          <NavLink
+            to="/home"
+            className="text-white px-4 py-2 rounded-md transition duration-300 hover:bg-gray-700"
+            activeClassName="bg-gray-700"
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/about">About</NavLink>
+          <NavLink
+            to="/about"
+            className="text-white px-4 py-2 rounded-md transition duration-300 hover:bg-gray-700"
+            activeClassName="bg-gray-700"
+          >
+            About
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink
+            to="/contact"
+            className="text-white px-4 py-2 rounded-md transition duration-300 hover:bg-gray-700"
+          >
+            Contact
+          </NavLink>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 }
 
