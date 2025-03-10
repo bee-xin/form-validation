@@ -6,9 +6,11 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+
   if (localStorage.getItem("token")) {
     return <Navigate to="/home" />;
   }
+
   const onFinish = async (values) => {
     try {
       const res = await axios.post(
@@ -26,50 +28,59 @@ function Login() {
 
       localStorage.setItem("token", res.data.access_token);
       navigate("/home");
-      console.log(res);
     } catch (error) {
-      console.log(error);
+      console.error("Login failed:", error.response?.data || error.message);
     }
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Validation Failed", errorInfo);
-  };
-  return (
-    <div className=" w-full h-auto p-4">
-      <Form
-        className="px-2 "
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "please input your email!",
-            },
-          ]}
-        >
-          <Input type="email" className="w-[200px] m-4 p-3" />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "please input your password",
-            },
-          ]}
-        >
-          <Input.Password type="password"></Input.Password>
-        </Form.Item>
 
-        <Button type="primary" htmlType="submit">
-          Login
-        </Button>
-      </Form>
+  const onFinishFailed = (errorInfo) => {
+    console.error("Validation Failed", errorInfo);
+  };
+
+  return (
+    <div className="w-screen h-screen flex items-center justify-center bg-gray-900">
+      <div
+        className="flex flex-col items-center p-6 w-[360px] h-auto 
+                      bg-white/20 backdrop-blur-md shadow-lg rounded-2xl border border-white/30"
+      >
+        <div className="mb-4 text-center">
+          <p className="text-2xl font-semibold text-white">Sign In</p>
+          <p className="text-gray-200">
+            Keep it all together and you will be fine.
+          </p>
+        </div>
+
+        <Form
+          className="w-full flex flex-col gap-4"
+          layout="vertical"
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: "Please input your email!" }]}
+          >
+            <Input
+              type="email"
+              placeholder="Email"
+              className="w-full p-3 border rounded-md"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password
+              placeholder="Password"
+              className="w-full p-3 border rounded-md"
+            />
+          </Form.Item>
+          <Button htmlType="submit" type="primary">
+            Log in
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

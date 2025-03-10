@@ -6,9 +6,8 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Register from "./Auth/Register";
 import Login from "./Auth/Login";
-import ProtectedRoute from "./Auth/Protected/ProtectedRoute";
 import Layout from "./Components/Layout";
-
+import ProtectedRoute from "./Protected/ProtectedRoute";
 function App() {
   return (
     <div style={{}}>
