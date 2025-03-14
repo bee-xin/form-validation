@@ -11,11 +11,12 @@ function Register() {
   const onFinish = async (values) => {
     try {
       const res = await axios.post(
-        `${API_BASE_URL}/api/v1/register`,
+        `${API_BASE_URL}/api/register`,
         {
           email: values.email,
-          full_name: values.username,
+          name: values.username,
           password: values.password,
+          password_confirmation: values.password_confirmation,
         },
         {
           headers: {
@@ -33,27 +34,20 @@ function Register() {
     console.log("Validation Failed", errorInfo);
   };
   return (
-    <div className="flex items-center justify-center h-auto p-4">
-      <div className="flex flex-row shadow-lg gap-4 p-4 rounded-[4px]">
-        <div>
-          <img
-            src="pic.jpg"
-            alt=""
-            className="w-[500px] h-[400px] rounded-[4px]"
-          />
-        </div>
-        <div className="flex flex-col">
+    <div className="flex items-center justify-center h-screen p-4 bg-gray-900 text-amber-50">
+      <div className="flex flex-row w-100 h-120 justify-center bg-white/20 backdrop-blur-md shadow-lg rounded-2xl border border-white/30">
+        <div className="flex flex-col ">
           <div className="text-center w-full h-auto mt-5 mb-5 font-bold text-2xl p-2">
             Create your account
           </div>
           <Form
             layout="vertical"
-            className="w-80"
+            className="w-80 "
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
             <Form.Item
-              label="Email"
+              label={<span className="text-white">Email</span>}
               name="email"
               rules={[
                 {
@@ -65,7 +59,7 @@ function Register() {
               <Input type="email" className="w-[200px] m-4 p-3" />
             </Form.Item>
             <Form.Item
-              label="Username"
+              label={<span className="text-white">Username</span>}
               name="username"
               rules={[
                 {
@@ -77,7 +71,7 @@ function Register() {
               <Input className="w-[200px] m-4 p-3" type="text" />
             </Form.Item>
             <Form.Item
-              label="Password"
+              label={<span className="text-white"> Password</span>}
               name="password"
               rules={[
                 {
@@ -88,7 +82,11 @@ function Register() {
             >
               <Input.Password type="password"></Input.Password>
             </Form.Item>
-
+            <Form.Item
+              label={<span className="text-white">Confirm password</span>}
+            >
+              <Input.Password type="password"></Input.Password>
+            </Form.Item>
             <Button type="primary" htmlType="submit">
               Register
             </Button>

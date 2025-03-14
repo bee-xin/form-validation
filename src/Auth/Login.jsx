@@ -14,9 +14,9 @@ function Login() {
   const onFinish = async (values) => {
     try {
       const res = await axios.post(
-        `${API_BASE_URL}/api/v1/login/access-token`,
+        `${API_BASE_URL}/api/login`,
         {
-          username: values.email,
+          email: values.email,
           password: values.password,
         },
         {
