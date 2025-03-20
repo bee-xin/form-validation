@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Home from "./Pages/Home";
-import About from "./Pages/About";
+/* import Home from "./Pages/Home";
+ */ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Register from "./Auth/Register";
 import Login from "./Auth/Login";
@@ -15,7 +15,8 @@ function App() {
       <Routes>
         {/*         <Route element={<ProtectedRoute />}> */}
         <Route element={<Layout />}>
-          <Route path="/home" element={<Home />} />
+          {/*           <Route path="/home" element={<Home />} />
+           */}{" "}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Route>

@@ -1,15 +1,26 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
+const getFunction = async () => {
+  const { data } = await axios.get("https://fakestoreapi.com/Products");
+  return data;
+};
 function Contact() {
+  const { data } = useQuery({
+    queryKey: ["id"],
+    queryFn: getFunction,
+  });
   return (
-    <div className=" flex justify-center items-center w-screen h-screen m-auto">
-      <div className="p-4 bg-emerald-700 text-amber-50 w-[600px] h-[300px] shadow-2xl">
-        <div>
-          <p className="text-2xl text-center">CONTACT US AT: </p>
+    <div className="flex flex-wrap gap-10 ">
+      {data?.map((item) => (
+        <div
+          key={item.id}
+          className="flex flex-col justify-around mt-7 mx-8 items-center p-5 gap-2 w-60 h-80 shadow-xl"
+        >
+          <img src={item.image} className="h-50 w-60" alt="hello" />
+          <div>{item.title}</div>
         </div>
-        <p> Email: swasthaya@gmail.com</p>
-        <p> Contact: 011-2345989</p>
-      </div>
+      ))}
     </div>
   );
 }
